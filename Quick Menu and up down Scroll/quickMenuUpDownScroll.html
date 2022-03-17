@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<style media="screen">
+  div,
+  ul,
+  li {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .quickmenu {
+    position: absolute;
+    width: 90px;
+    top: 50%;
+    margin-top: -50px;
+    right: 10px;
+    background: #fff;
+    z-index: 99;
+  }
+
+  .quickmenu ul {
+    position: relative;
+    float: left;
+    width: 100%;
+    display: inline-block;
+    *display: inline;
+    border: 1px solid #ddd;
+  }
+
+  .quickmenu ul li {
+    float: left;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    display: inline-block;
+    *display: inline;
+  }
+
+  .quickmenu ul li a {
+    position: relative;
+    float: left;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color: #999;
+    font-size: 9.5pt;
+  }
+
+  .quickmenu ul li a:hover {
+    color: #000;
+  }
+
+  .quickmenu ul li:last-child {
+    border-bottom: 0;
+  }
+
+  .ScrollButton {
+    /* 버튼의 위치 고정 */
+    /* x 위치 입력 */
+    cursor: pointer;
+    /* 호버링 했을 때 커서 모양 변경 */
+    z-index: 10;
+    /* 다른 태그에 가려지지 않게 우선순위 변경 */
+    /* 스크롤 위치에 상관없이 보이게 하려면 생략 */
+  }
+
+  /* 두 태그에 각각 y 위치 입력 */
+  #TopButton {}
+
+  #BottomButton {}
+</style>
+
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<div class="quickmenu" style="background:#febd17;">
+  <ul>
+
+    <li> <a id="TopButton" class="ScrollButton">
+        <span class="glyphicon glyphicon-chevron-up" style="color:black">
+
+        </span>
+      </a>
+    </li>
+
+
+    <li><a href="#" style="color:black">menu</a></li>
+    <li><a href="#" style="color:black">menu</a></li>
+    <li> <a id="BottomButton" class="ScrollButton">
+        <span class="glyphicon glyphicon-chevron-down" style="color:black">
+
+        </span>
+      </a>
+    </li>
+  </ul>
+</div>
+<div class="">
+  내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+  내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br> 내용<br>
+</div>
+<footer id="footer"></footer>
+
+
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var currentPosition = parseInt($(".quickmenu").css("top"));
+    $(window).scroll(function() {
+      var position = $(window).scrollTop();
+      $(".quickmenu").stop().animate({
+        "top": position + currentPosition + "px"
+      }, 700);
+    });
+  });
+  $(function() {
+    $('#back-to-top').on('click', function(e) {
+      e.preventDefault();
+      $('html,body').animate({
+        scrollTop: 0
+      }, 600);
+    });
+
+
+    //위로가기 버튼
+    $(window).scroll(function() {
+      if ($(document).scrollTop() > 100) {
+        $('#back-to-top').addClass('show');
+      } else {
+        $('#back-to-top').removeClass('show');
+      }
+    });
+  });
+
+  //
+  $(function() {
+    $(window).scroll(function() {
+      if ($(this).scrollTop() > 600) {
+        $('.ScrollButton').fadeIn();
+      }
+    });
+
+    $("#TopButton").click(function() {
+      $('html').animate({
+        scrollTop: 0
+      }, 600);
+    });
+
+    $("#BottomButton").click(function() {
+      $('html').animate({
+        scrollTop: ($('#footer').offset().top)
+      }, 600);
+    });
+  });
+</script>
+</body>
+
+</html>
